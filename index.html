@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Dark Theme Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a2e, #16213e);
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Container Style */
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(30, 30, 60, 0.85);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1.2s ease-in-out forwards;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #ff6b81;
+            animation: popIn 1s ease-in-out forwards;
+            text-shadow: 0px 3px 8px rgba(255, 107, 129, 0.4);
+        }
+
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ff6b81;
+            background-color: #222;
+            border: 2px solid #ff6b81;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0px 5px 15px rgba(255, 107, 129, 0.3);
+        }
+
+        button:hover {
+            background-color: #333;
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(255, 107, 129, 0.5);
+        }
+
+        /* Message Style */
+        #message {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffddc1;
+            margin-top: 20px;
+            display: none;
+            animation: fadeInMessage 1s ease-in-out forwards;
+            text-shadow: 0px 2px 8px rgba(255, 221, 193, 0.4);
+        }
+
+        /* Smooth Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInMessage {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Do you love me?</h1>
+        <div class="button-container">
+            <button id="yesBtn" onclick="showLove()">Yes</button>
+            <button id="noBtn" onclick="runAway()">No</button>
+        </div>
+        <p id="message">I knew it 😊 I love you too 😘</p>
+    </div>
+
+    <script>
+        function showLove() {
+            const message = document.getElementById("message");
+            message.style.display = "block";
+            message.style.opacity = "0";
+            setTimeout(() => {
+                message.style.opacity = "1";
+            }, 100);
+        }
+
+        function runAway() {
+            const noBtn = document.getElementById("noBtn");
+
+            // Get viewport dimensions and define margin to keep button within view
+            const margin = 40; // pixels
+            const maxX = window.innerWidth - noBtn.offsetWidth - margin;
+            const maxY = window.innerHeight - noBtn.offsetHeight - margin;
+
+            // Generate random positions for the button within the viewport bounds with margin
+            const x = Math.floor(Math.random() * (maxX - margin)) + margin;
+            const y = Math.floor(Math.random() * (maxY - margin)) + margin;
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+            noBtn.style.transition = "all 0.4s ease-in-out"; // Smooth transition for the movement
+        }
+    </script>
+
+</body>
+</html>
